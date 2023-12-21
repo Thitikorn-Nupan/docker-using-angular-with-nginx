@@ -1,0 +1,9 @@
+version: '3'
+# can extends service that you need
+# remember you can use the same service name
+# As backend service is not api service
+services:
+  frontend:
+    extends:
+      file: docker-compose-angular.yml
+      service: frontend
