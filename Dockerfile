@@ -8,19 +8,17 @@ LABEL authors="ttknp"
 # Create a Virtual directory inside the docker image # you can use . if you don't want nested dir
 WORKDIR /home/app
 
+# Copy package*.json files from local machine to virtual directory in docker image
+COPY package*.json /home/app
 
-# Copy files from local machine to virtual directory in docker image
-# Note ../.. means you are position on build-basic-webapp-using-angular and . after ../.. means copy ../.. to WORKDIR <...>
-COPY ../../package*.json /home/app
-
+# Install package
 # npm ci == npm clean install
 RUN npm ci
 
 # after install copy all to /home/app
-COPY ../.. /home/app
+COPY . /home/app
 
-# Note npm clean install = npm ci
-#RUN npm clean install && npm run build
+# and build static files
 RUN npm run build
 
 
@@ -33,18 +31,17 @@ WORKDIR /usr/share/nginx/html
 
 # Copying compiled code and nginx config to different folder # NOTE: This path may change according to your project's output folder (see on angular.json file)
 # focus on /home/app/... it should follow WORKDIR angular
-
 COPY --from=angular /home/app/dist/build-basic-webapp-using-angular/browser /usr/share/nginx/html
 # Copy your custom nginx.conf
-COPY ../../nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Importance
 CMD ["nginx", "-g", "daemon off;"]
 
 
-# **** Step run build & run image on container *** it's difference when **** you run Dockerfile on nested dir
+# Step run build & run image on container
 # . it means Dockerfile location
-# 1. docker build -t <image name> -f <dir to Dockerfile and dont forget the dot after this> .
-# ex, docker build -t angular-app -f dockers/angular/Dockerfile .
+# 1. docker build -t <image name> .
+# ex, docker build -t angular-app .
 # 2. docker run -d -p <port access runtime>:<port on nginx.conf> <image name>
 # ex , docker run -d -p 8080:8000 angular-app

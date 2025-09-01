@@ -1,13 +1,10 @@
 version: '3'
 services:
   frontend:
-    container_name: webapp
+    container_name: static_webapp
     build:
-      context: . # relative to docker-compose command running directory (.) means this folder
+      context: . # relative to docker-compose command running directory (.) means this folder (below)
       dockerfile: dockers/angular/Dockerfile # specify path to Dockerfile it starts on current folder application
-    image: angular # repository
-    # it's nice command So you are not needed to specify -p 8080:80
-    ports:
-      - '8080:80'
-    stdin_open: true # stdin_open and tty: keep open the terminal after building container
-    tty: true
+    image: angular_repo # repository
+    ports: # it's nice command So you are not needed to specify -p 8080:8000 when build
+      - '8080:8000'

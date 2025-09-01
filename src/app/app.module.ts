@@ -1,15 +1,13 @@
 import {NgModule} from "@angular/core";
-import {AppComponent} from "./app.component";
 import {AppRoutes} from "./app.routes";
+
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [],
   imports: [
     AppRoutes
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: []
 })
 export class AppModule {
 
