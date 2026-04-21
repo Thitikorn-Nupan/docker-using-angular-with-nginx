@@ -10,5 +10,4 @@ import {AppRoutes} from "./app.routes";
   bootstrap: []
 })
 export class AppModule {
-
 }

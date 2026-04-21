@@ -4,25 +4,21 @@
     <div class=" collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ms-auto ">
         <ng-container *ngFor="let routerLink of routerLinks; let index = index">
-          <ng-container *ngIf="index < 2">
-            <li class="nav-item p-lg-3" >
+            <li class="nav-item p-lg-3" *ngIf="index < 2">
               <a class="nav-link mx-2" >{{ routerLink.label }}</a>
             </li>
-          </ng-container>
         </ng-container>
           <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
             <ul class="navbar-nav">
               <li class="nav-item dropdown p-lg-3">
                 <a class="nav-link dropdown-toggle" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Employee
+                  Employee Option
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                   <ng-container *ngFor="let routerLink of routerLinks; let index = index">
-                    <ng-container *ngIf="index >= 2">
-                      <li>
-                        <a class="dropdown-item p-2">{{routerLink.label}}</a>
+                      <li *ngIf="index >= 2">
+                          <a class="dropdown-item p-2">{{routerLink.label}}</a>
                       </li>
-                    </ng-container>
                   </ng-container>
                 </ul>
               </li>

@@ -1,9 +1,10 @@
+# docker compose with extends docker compose files
 version: '3'
-# can extends service that you need
-# remember you can use the same service name
-# As backend service is not api service
 services:
   frontend:
+    # can extends service that you need
     extends:
-      file: docker-compose-angular.yml
-      service: frontend
+      file: docker-compose-angular.yml # specify file
+      service: frontend  # specify service that you want to map, Remember you can use the same service name
+# Step run
+# 1. docker-compose up -d --build

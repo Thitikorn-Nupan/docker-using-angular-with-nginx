@@ -5,6 +5,9 @@ services:
     build:
       context: . # relative to docker-compose command running directory (.) means this folder (below)
       dockerfile: dockers/angular/Dockerfile # specify path to Dockerfile it starts on current folder application
-    image: angular_repo # repository
-    ports: # it's nice command So you are not needed to specify -p 8080:8000 when build
+    image: angular_repo # set repository name or image name
+    ports: # it's cool command, So you do not need to specify -p <port access runtime>:<port on nginx.conf> when build
       - '8080:8000'
+
+# Step run difference name *** but prefix have to be docker-compose-<>.yml
+# 1. docker-compose -f docker-compose-angular.yml up -d --build

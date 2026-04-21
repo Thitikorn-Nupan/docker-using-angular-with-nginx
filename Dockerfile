@@ -1,5 +1,4 @@
 # ******* Docker and Angular + NGINX (Nginx ชื่อเต็มๆว่า Engine-X คือ Web Server) Running Angular App with Nginx
-
 ### STAGE 1:BUILD ###
 # This is needed to build and compile our code while generating the docker image
 FROM node:18.14.1 as angular
@@ -11,8 +10,7 @@ WORKDIR /home/app
 # Copy package*.json files from local machine to virtual directory in docker image
 COPY package*.json /home/app
 
-# Install package
-# npm ci == npm clean install
+# Install package ,npm ci == npm clean install
 RUN npm ci
 
 # after install copy all to /home/app
